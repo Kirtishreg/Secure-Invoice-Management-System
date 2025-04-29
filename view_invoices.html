@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}View Invoices{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Invoices</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Invoice ID</th>
+            <th>Amount</th>
+            <th>Tax Rate (%)</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+        <tr>
+            <td>{{ invoice.id }}</td>
+            <td>{{ invoice.total_amount | round(2) }}</td>
+            <td>{{ invoice.tax_rate }}</td>
+            <td>{{ invoice.status }}</td>
+            <td>
+                <a href="{{ url_for('main.view_invoice', invoice_id=invoice.id) }}" class="btn btn-info btn-sm">
+                    View Details
+                </a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5" class="text-center">No invoices found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/dashboard" class="btn btn-secondary mt-4">Back to Dashboard</a>
+{% endblock %}

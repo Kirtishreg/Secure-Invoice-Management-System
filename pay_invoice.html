@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Pay Invoice #{{ invoice.id }}</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="payment_amount">Payment Amount</label>
+            <input type="number" class="form-control" name="payment_amount" required>
+        </div>
+        <div class="form-group">
+            <label for="payment_method">Payment Method</label>
+            <select class="form-control" name="payment_method" required>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="PayPal">PayPal</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Payment</button>
+    </form>
+</div>
+{% endblock %}

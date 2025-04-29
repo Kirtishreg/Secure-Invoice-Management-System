@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Invoice Detail{% endblock %}
+
+{% block content %}
+<h1>Invoice ID: {{ invoice.id }}</h1>
+<p>Total Amount: {{ invoice.total_amount }}</p>
+<p>Status: {{ invoice.status }}</p>
+
+<h2>Payments</h2>
+<ul class="list-group">
+    {% for payment in payments %}
+        <li class="list-group-item">
+            Payment ID: {{ payment.id }} | Amount: {{ payment.amount }} | Status: {{ payment.status }}
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('main.pay_invoice', invoice_id=invoice.id) }}" class="btn btn-success mt-4">Pay Invoice</a>
+
+
+{% if invoice.status == 'Pending' %}
+    <form method="POST" action="/approve_invoice/{{ invoice.id }}" class="mt-2">
+        <button type="submit" class="btn btn-warning">Approve Invoice</button>
+    </form>
+{% endif %}
+
+<a href="/view_invoices" class="btn btn-secondary mt-4">Back to Invoices</a>
+{% endblock %}

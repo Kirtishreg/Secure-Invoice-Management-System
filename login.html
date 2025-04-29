@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="POST">
+    <div class="form-group">
+        <input type="text" name="username" class="form-control" placeholder="Username" required>
+    </div>
+    <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+<p class="text-danger">{{ get_flashed_messages() }}</p>
+{% endblock %}

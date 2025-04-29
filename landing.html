@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Welcome to the Invoice and Payment Management System</h1>
+    <p>This system allows you to create and manage invoices and payments securely.</p>
+    <a href="{{ url_for('main.login') }}" class="btn btn-primary">Log In</a>
+    <a href="{{ url_for('main.register') }}" class="btn btn-secondary">Register</a>
+</div>
+{% endblock %}

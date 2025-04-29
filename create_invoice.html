@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Create Invoice</h2>
+    <form method="POST" id="invoice-form">
+        <div id="item-list">
+            <div class="form-group item">
+                <label for="description">Item Description</label>
+                <input type="text" class="form-control" name="description" required>
+                
+                <label for="quantity">Quantity</label>
+                <input type="number" class="form-control" name="quantity" required>
+                
+                <label for="unit_price">Unit Price</label>
+                <input type="number" class="form-control" name="unit_price" required>
+                
+                <label>Total Price</label>
+                <input type="text" class="form-control" name="total_price" disabled>
+                <hr>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary" id="add-item">Add Item</button>
+        <div class="form-group">
+            <label for="tax_rate">Tax Rate (%)</label>
+            <input type="number" class="form-control" name="tax_rate" step="0.01">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Invoice</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('add-item').addEventListener('click', function() {
+    const itemList = document.getElementById('item-list');
+    const newItem = document.createElement('div');
+    newItem.className = 'form-group item';
+    newItem.innerHTML = `
+        <label for="description">Item Description</label>
+        <input type="text" class="form-control" name="description" required>
+        
+        <label for="quantity">Quantity</label>
+        <input type="number" class="form-control" name="quantity" required>
+        
+        <label for="unit_price">Unit Price</label>
+        <input type="number" class="form-control" name="unit_price" required>
+        
+        <label>Total Price</label>
+        <input type="text" class="form-control" name="total_price" disabled>
+        <hr>
+    `;
+    itemList.appendChild(newItem);
+});
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Two-Factor Authentication{% endblock %}
+
+{% block content %}
+    <h2 class="text-2xl font-bold mb-6">Two-Factor Authentication</h2>
+    <form method="POST" action="{{ url_for('main.two_factor_auth', user_id=user_id) }}">
+        <div class="mb-4">
+            <label for="code" class="block text-gray-700">Enter the 2FA Code:</label>
+            <input type="text" id="code" name="code" required
+                   class="mt-1 block w-full border border-gray-300 rounded-md p-2" 
+                   placeholder="6-digit code">
+        </div>
+        <button type="submit" class="w-full bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600">
+            Verify Code
+        </button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                    <div class="bg-red-500 text-white p-2 rounded mb-2">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+{% endblock %}
